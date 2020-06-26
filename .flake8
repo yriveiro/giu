@@ -1,0 +1,14 @@
+[flake8]
+filename = *.py
+max-line-length = 88
+max-complexity = 18
+exclude =
+    .git
+    __pycache__
+    setup.py
+    build
+    dist
+    releases
+    .mypy_cache
+    .pytest_cache
+    .github

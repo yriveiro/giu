@@ -1,0 +1,17 @@
+[api]
+url = 'https://dns.api.gandi.net/api/v5'
+key = 'YOUR_KEY'
+
+[dns]
+domain = 'DOMAIN Ex: example.com'
+records = [
+    {'type' = 'A', 'name' = '@', 'ttl' = 18000},
+    {'type' = 'CNAME', 'name' = 'www', 'value' = 'example.com', 'ttl' = 18000 }
+]
+
+[resolver]
+providers = [
+    'http://ipecho.net/plain',
+    'https://ifconfig.me/ip',
+    'http://www.mon-ip.fr'
+]
