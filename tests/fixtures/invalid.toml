@@ -1,0 +1,13 @@
+[api]
+url : 'https://dns.api.gandi.net/api/v5'
+key : '123456789'
+
+[dns]
+domain : "example.com"
+records : [
+    {'type' : 'A', 'name' : '@', 'ttl' : 18000},
+    {'type' : 'CNAME', 'name' : 'www', 'value' : 'www.example.com', 'ttl' : 18000 }
+]
+
+[resolver]
+providers : ['https://ifconfig.me/ip']

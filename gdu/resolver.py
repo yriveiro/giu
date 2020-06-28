@@ -36,6 +36,9 @@ class Resolver:
 
         Raises:
             None"""
+        if not providers:
+            raise ResolverError('the list of providers can not be None')
+
         self._providers = providers
         self._spinner = spinner
 
@@ -63,16 +66,10 @@ class Resolver:
                     if match:
                         return '.'.join(match.group(1, 2, 3, 4))
 
-                    self._spinner.warning(
-                        f"No valid IP found on '{provider}', trying next"
+                    self._spinner.warn(
+                        f"No valid IP found on '{provider}', trying next one"
                     )
-
-                self._spinner.warning(
-                    f"Provider '{provider}' returned {r.status_code}, trying next one"
-                )
             except Timeout:
-                self._spinner.warning(
-                    f"Provider: '{provider}' timeout, trying next one"
-                )
+                self._spinner.warn(f"Provider: '{provider}' timeout, trying next one")
 
-        raise ResolverError('all provider failed or timeout.')
+        raise ResolverError('all provider failed or timeout')
