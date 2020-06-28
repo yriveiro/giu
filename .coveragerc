@@ -1,0 +1,11 @@
+[html]
+directory = htmlcov
+
+[run]
+omit =
+        *tests*
+        *__init__*
+[report]
+exclude_lines =
+        pragma: no cover
+        if __name__ == .__main__.:
