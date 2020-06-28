@@ -6,7 +6,6 @@ repos:
       - id: yapf
         args: ['--style=.style.yapf', '--parallel', '--in-place']
 
-
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.8.3
     hooks:
