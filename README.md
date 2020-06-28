@@ -40,15 +40,24 @@ providers = [
 ```
 
 ### One shot
-In this example the config file was created on `$HOME/.gdu/config.toml`.
+In this example the config file was created on `$HOME/.gdu/example.com.toml`.
 
 ```shell
-gdu sync --conf $HOME/.gdu/config.toml
+gdu sync --conf $HOME/.gdu/example.com.toml
 ```
 
 ### Cronjob
 
 ```shell
 $ crontab -e
-* */2 * * * gdu sync --conf $HOME/.gdu/config.toml
+* */2 * * * gdu sync --conf $HOME/.gdu/example.com.toml
 ```
+
+## Improvements
+
+Some improvements that I have ff the top of my head:
+
+* `put` command to create entries like CNAMES and so on.
+* `delete` command to delete entries
+* `backup` command to do backups
+* Docker Image to run gdu with docker compose or as a Cronjob on Kubernetes.
