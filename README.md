@@ -47,6 +47,7 @@ gdu sync --conf $HOME/.gdu/example.com.toml
 ```
 
 ### Cronjob
+In this example the config file was created on `$HOME/.gdu/example.com.toml`.
 
 ```shell
 $ crontab -e
