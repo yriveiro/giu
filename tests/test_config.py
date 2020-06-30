@@ -1,6 +1,6 @@
 import pytest
-from gdns.config import ConfigError
-from gdns.config import parse
+from giu.config import ConfigError
+from giu.config import parse
 from tomlkit.items import Table
 
 
