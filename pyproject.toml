@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "py-gdu"
+name = "gdu"
 version = "0.1.0"
 description = "Commnand line tool to interact with Gandi LiveDN."
 authors = ["Yago Riveiro <yago.riveiro@gmail.com>"]
