@@ -6,8 +6,8 @@ authors = ["Yago Riveiro <yago.riveiro@gmail.com>"]
 
 license = "MIT"
 readme = 'README.md'
-repository = "https://github.com/yriveiro/py-gdu"
-homepage = "https://github.com/yriveiro/py-gdu"
+repository = "https://github.com/yriveiro/gdu"
+homepage = "https://github.com/yriveiro/gdu"
 keywords = ['Gandi', 'LiveDNS', 'Dynamic IP', 'dns']
 
 classifiers = [

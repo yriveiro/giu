@@ -1,4 +1,4 @@
-# py-gdu
+# GDU
 Gandi LiveDNS Updater - commnand line tool to keep your dynamic ip up to date.
 
 ## Prequisites
@@ -12,7 +12,7 @@ Gandi LiveDNS Updater - commnand line tool to keep your dynamic ip up to date.
 The recommended way to install this package is through [pip](https://pip.pypa.io/en/stable/).
 
 ```shell
-pip install --user py-gdu
+pip install --user gdu
 ```
 
 ## Usage
