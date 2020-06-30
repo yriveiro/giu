@@ -5,8 +5,10 @@ import click
 from halo import Halo
 
 from .config import parse
-from .livedns import LiveDNS, LiveDNSException
-from .resolver import Resolver, ResolverError
+from .livedns import LiveDNS
+from .livedns import LiveDNSException
+from .resolver import Resolver
+from .resolver import ResolverError
 
 spinner = Halo(text='Loading', spinner='dots')
 

@@ -10,7 +10,16 @@ repository = "https://github.com/py-gdu"
 homepage = "https://github.com/yriveiro/py-gdu"
 keywords = ['Gandi', 'LiveDNS', 'Dynamic IP', 'dns']
 
-classifiers = []
+classifiers = [
+    "Development Status :: 3 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Environment :: Console",
+    "Topic :: Internet :: Name Service (DNS)",
+    "Framework :: tox"
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -37,6 +46,9 @@ gdu = 'gdu.cli:gdu'
 
 [tool.isort]
 line_length = 88
+force_single_line = true
+atomic = true
+use_parentheses = true
 
 [build-system]
 requires = ["poetry>=0.12"]

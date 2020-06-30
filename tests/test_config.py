@@ -1,5 +1,6 @@
 import pytest
-from gdu.config import ConfigError, parse
+from gdu.config import ConfigError
+from gdu.config import parse
 from tomlkit.items import Table
 
 
