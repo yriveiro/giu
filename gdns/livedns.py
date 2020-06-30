@@ -217,7 +217,7 @@ class LiveDNS:
                     self._spinner.info('Dry run mode, no update done.')
                 else:
                     self._spinner.start('Creating LiveDNS snapshot')
-                    snapshot = self._snapshot(domain, 'gdu')
+                    snapshot = self._snapshot(domain, 'gdns')
 
                     if not snapshot:
                         raise RuntimeError('snapshot: operation failed, update aborted')

@@ -15,11 +15,11 @@ spinner = Halo(text='Loading', spinner='dots')
 
 @click.group()
 @click.pass_context
-def gdu(ctx: Dict) -> None:
+def gdns(ctx: Dict) -> None:
     """Commnand line tool to interact with Gandi LiveDN."""
 
 
-@gdu.command()
+@gdns.command()
 @click.pass_context
 @click.option('--config', default='config.toml', help='Path to the config file.')
 @click.option('--dry-run', is_flag=True, help='Dry run mode on.')

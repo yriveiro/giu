@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "gdu"
+name = "gdns"
 version = "0.1.0"
 description = "Commnand line tool to interact with Gandi LiveDN."
 authors = ["Yago Riveiro <yago.riveiro@gmail.com>"]
 
 license = "MIT"
 readme = 'README.md'
-repository = "https://github.com/yriveiro/gdu"
-homepage = "https://github.com/yriveiro/gdu"
+repository = "https://github.com/yriveiro/gdns"
+homepage = "https://github.com/yriveiro/gdns"
 keywords = ['Gandi', 'LiveDNS', 'Dynamic IP', 'dns']
 
 classifiers = [
@@ -42,7 +42,7 @@ requests_mock = "^1.8.0"
 requests-mock = "^1.8.0"
 
 [tool.poetry.scripts]
-gdu = 'gdu.cli:gdu'
+gdns = 'gdns.cli:gdns'
 
 [tool.isort]
 line_length = 88

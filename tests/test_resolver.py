@@ -2,9 +2,9 @@ from unittest import mock
 
 import pytest
 import requests_mock
-from gdu.config import parse
-from gdu.resolver import Resolver
-from gdu.resolver import ResolverError
+from gdns.config import parse
+from gdns.resolver import Resolver
+from gdns.resolver import ResolverError
 from halo import Halo
 from requests import Timeout
 

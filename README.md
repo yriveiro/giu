@@ -1,4 +1,4 @@
-# GDU
+# GDNS
 Gandi LiveDNS Updater - commnand line tool to keep your dynamic ip up to date.
 
 ## Prequisites
@@ -12,12 +12,12 @@ Gandi LiveDNS Updater - commnand line tool to keep your dynamic ip up to date.
 The recommended way to install this package is through [pip](https://pip.pypa.io/en/stable/).
 
 ```shell
-pip install --user gdu
+pip install --user gdns
 ```
 
 ## Usage
 
-To use `gdu` you need to create a `config.toml` file to hold the minimal set of
+To use `gdns` you need to create a `config.toml` file to hold the minimal set of
 configurations.
 
 ```toml
@@ -40,18 +40,18 @@ providers = [
 ```
 
 ### One shot
-In this example the config file was created on `$HOME/.gdu/example.com.toml`.
+In this example the config file was created on `$HOME/.gdns/example.com.toml`.
 
 ```shell
-gdu sync --conf $HOME/.gdu/example.com.toml
+gdns sync --conf $HOME/.gdns/example.com.toml
 ```
 
 ### Cronjob
-In this example the config file was created on `$HOME/.gdu/example.com.toml`.
+In this example the config file was created on `$HOME/.gdns/example.com.toml`.
 
 ```shell
 $ crontab -e
-* */2 * * * gdu sync --conf $HOME/.gdu/example.com.toml
+* */2 * * * gdns sync --conf $HOME/.gdns/example.com.toml
 ```
 
 ## Improvements
@@ -61,4 +61,4 @@ Some improvements that I have ff the top of my head:
 * `put` command to create entries like CNAMES and so on.
 * `delete` command to delete entries
 * `backup` command to do backups
-* Docker Image to run gdu with docker compose or as a Cronjob on Kubernetes.
+* Docker Image to run gdns with docker compose or as a Cronjob on Kubernetes.

@@ -8,10 +8,10 @@ clean:
 	@find . -type f -name "*.py[co]" -exec rm -rf {} +
 
 coverage: clean
-	@poetry run pytest -s --cov=gdu --cov-config .coveragerc --cov-report=html tests/
+	@poetry run pytest -s --cov=gdns --cov-config .coveragerc --cov-report=html tests/
 
 test:
-	@poetry run pytest -s --cov=gdu --cov-config .coveragerc tests/
+	@poetry run pytest -s --cov=gdns --cov-config .coveragerc tests/
 
 build: clean
 	@poetry build
