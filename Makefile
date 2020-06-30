@@ -1,4 +1,5 @@
 clean:
+	$(info Cleaning up)
 	@rm -rf build dist .eggs *.egg-info
 	@rm -rf .benchmarks .coverage coverage.xml htmlcov report.xml .tox
 	@find . -type d -name '.mypy_cache' -exec rm -rf {} +
@@ -12,13 +13,13 @@ coverage: clean
 test:
 	@poetry run pytest -s --cov=gdu --cov-config .coveragerc tests/
 
-build:
+build: clean
 	@poetry build
 
 publish:
 	@poetry publish
 
-wheel:
+wheel: clean
 	@poetry build -v
 
 install:
