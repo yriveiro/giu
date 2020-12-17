@@ -37,7 +37,7 @@ class LiveDNS:
         self._spinner = spinner
 
         self._headers = {
-            'x-api-key': self._key,
+            'Authorization': f'Apikey {self._key}',
             'Accept': 'application/json',
         }
 
@@ -222,7 +222,7 @@ class LiveDNS:
                     if not snapshot:
                         raise RuntimeError('snapshot: operation failed, update aborted')
 
-                    self._spinner.succeed(f"Snapshot {snapshot['uuid']} created")
+                    self._spinner.succeed(f"Snapshot {snapshot['message']} created")
 
                     self._spinner.start("Updating 'A' record on Gandi LiveDNS")
                     self._update_record(domain, record, ip)
@@ -231,6 +231,6 @@ class LiveDNS:
             raise Exception('sync failed') from exc
         finally:
             if not self._dry_run and snapshot:
-                self._spinner.start(f"Deleting snapshot {snapshot['uuid']}")
-                self._delete_snapshot(domain, snapshot['uuid'])
-                self._spinner.succeed(f"Snapshot {snapshot['uuid']} deleted")
+                self._spinner.start(f"Deleting snapshot {snapshot['message']}")
+                self._delete_snapshot(domain, snapshot['message'])
+                self._spinner.succeed(f"Snapshot {snapshot['message']} deleted")
