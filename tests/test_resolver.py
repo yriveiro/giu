@@ -2,11 +2,12 @@ from unittest import mock
 
 import pytest
 import requests_mock
+from halo import Halo
+from requests import Timeout
+
 from giu.config import parse
 from giu.resolver import Resolver
 from giu.resolver import ResolverError
-from halo import Halo
-from requests import Timeout
 
 
 def test_resolve_empty_provider_list(fixture_dir):
@@ -37,7 +38,7 @@ def test_resolve_ip_request_mock(fixture_dir):
     resolver = Resolver(config['resolver']['providers'], Halo())
 
     with requests_mock.Mocker(real_http=True) as m:
-        m.register_uri('GET', 'https://ifconfig.me/ip', text='127.0.0.1')
+        m.get('https://ifconfig.me/ip', text='127.0.0.1')
 
         assert resolver.ip == '127.0.0.1'
 
@@ -56,7 +57,7 @@ def test_resolve_wrong_ip(fixture_dir):
     resolver = Resolver(config['resolver']['providers'], Halo())
 
     with requests_mock.Mocker(real_http=True) as m:
-        m.register_uri('GET', 'https://ifconfig.me/ip', text='not valid ip')
+        m.get('https://ifconfig.me/ip', text='not valid ip')
 
         with pytest.raises(ResolverError, match='all provider failed or timeout'):
             resolver.ip
@@ -67,7 +68,7 @@ def test_resolve_ip_timeout(fixture_dir):
     resolver = Resolver(config['resolver']['providers'], Halo())
 
     with requests_mock.Mocker(real_http=True) as m:
-        m.register_uri('GET', 'https://ifconfig.me/ip', exc=Timeout)
+        m.get('https://ifconfig.me/ip', exc=Timeout)
 
         with pytest.raises(ResolverError, match='all provider failed or timeout'):
             resolver.ip
