@@ -3,7 +3,7 @@ name = "giu"
 version = "0.1.0"
 description = "Gandi LiveDNS Updater - commnand line tool to keep your dynamic ip up to date"
 authors = ["Yago Riveiro <yago.riveiro@gmail.com>"]
-
+maintainers = ["Yago Riveiro <yago.riveiro@gmail.com>"]
 license = "MIT"
 readme = 'README.md'
 repository = "https://github.com/yriveiro/giu"
@@ -13,8 +13,10 @@ keywords = ['Gandi', 'LiveDNS', 'Dynamic IP', 'dns']
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: Implementation :: CPython",
     "Environment :: Console",
     "Topic :: Internet :: Name Service (DNS)",
