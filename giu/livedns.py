@@ -194,13 +194,15 @@ class LiveDNS:
 
         Raises:
             Exception on case of failure."""
-        self._spinner.info(f"TTL for 'A' record on config: {record['ttl']}")
+        self._spinner.info(
+            f"TTL for 'A' record '{record['name']}' on config: {record['ttl']}"
+        )
 
         try:
             snapshot = None
 
             self._spinner.start(
-                f'Getting A record info for {domain} from Gandi LiveDNS'
+                f"Getting A record '{record['name']}' info for {domain} from Gandi LiveDNS"
             )
 
             r = self._get_record(domain, record)
@@ -208,11 +210,15 @@ class LiveDNS:
             if not r:
                 raise RuntimeError('record not found')
 
-            self._spinner.succeed(f"'A' record for {domain} from Gandi LiveDNS")
-            self._spinner.info(
-                f"IP for 'A' record on Gandi LiveDNS: {''.join(r['rrset_values'])}"
+            self._spinner.succeed(
+                f"'A' record '{record['name']}' for {domain} from Gandi LiveDNS"
             )
-            self._spinner.info(f"TTL for 'A' record on Gandi LiveDNS: {r['rrset_ttl']}")
+            self._spinner.info(
+                f"IP for 'A' record '{record['name']}' on Gandi LiveDNS: {''.join(r['rrset_values'])}"
+            )
+            self._spinner.info(
+                f"TTL for 'A' record '{record['name']}' on Gandi LiveDNS: {r['rrset_ttl']}"
+            )
 
             if not self._diff(ip, int(record['ttl']), r):
                 self._spinner.info('Dynamic IP and TTL are up to date on Gandi LiveDNS')
@@ -228,9 +234,13 @@ class LiveDNS:
 
                     self._spinner.succeed(f"Snapshot {snapshot['message']} created")
 
-                    self._spinner.start("Updating 'A' record on Gandi LiveDNS")
+                    self._spinner.start(
+                        "Updating 'A' record '{record['name']}' on Gandi LiveDNS"
+                    )
                     self._update_record(domain, record, ip)
-                    self._spinner.succeed("'A' record on Gandi LiveDNS updated")
+                    self._spinner.succeed(
+                        "'A' record '{record['name']}' on Gandi LiveDNS updated"
+                    )
         except Exception as exc:
             raise Exception('sync failed') from exc
         finally:
