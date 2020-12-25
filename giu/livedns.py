@@ -7,7 +7,7 @@ from halo import Halo
 from requests import Timeout
 from requests.utils import requote_uri
 
-DEFAULT_TTL = 18000
+DEFAULT_TTL = 1800
 
 
 class LiveDNSException(Exception):
@@ -177,21 +177,24 @@ class LiveDNS:
             data=data,
         )
 
-    def sync(self, ip: str, domain: str, records: List[Dict[str, str]]) -> None:
-        def __diff(ip: str, ttl: int, r: Dict) -> bool:
-            return not (ttl == r['rrset_ttl']) and (ip == r['rrset_values'][0])
+    def _diff(self, ip: str, ttl: int, r: Dict) -> bool:
+        """Checks if exists differences between config and Gandi state"""
+        return (ttl != r['rrset_ttl']) or (ip != r['rrset_values'][0])
 
-        if not self._domain_exists(domain):
-            raise RuntimeError(f"requested domain: '{domain}' does not exists")
+    def _sync(self, ip: str, domain: str, record: Dict[str, str]) -> None:
+        """Sync a single record to Gandi
 
-        record = next(filter(lambda r: r['type'] == 'A', records))
+        Args:
+            ip (str): the current ip
+            domain (str): domain name.
+            record (Dict[srt, str]): DNS record to update.
 
+        Returns:
+            None.
+
+        Raises:
+            Exception on case of failure."""
         self._spinner.info(f"TTL for 'A' record on config: {record['ttl']}")
-
-        if not record:
-            raise LiveDNSException(
-                "no 'A' record defined for {domain} in config file, sync aborted"
-            )
 
         try:
             snapshot = None
@@ -199,6 +202,7 @@ class LiveDNS:
             self._spinner.start(
                 f'Getting A record info for {domain} from Gandi LiveDNS'
             )
+
             r = self._get_record(domain, record)
 
             if not r:
@@ -210,11 +214,11 @@ class LiveDNS:
             )
             self._spinner.info(f"TTL for 'A' record on Gandi LiveDNS: {r['rrset_ttl']}")
 
-            if not __diff(ip, int(record['ttl']), r):
+            if not self._diff(ip, int(record['ttl']), r):
                 self._spinner.info('Dynamic IP and TTL are up to date on Gandi LiveDNS')
             else:
                 if self._dry_run:
-                    self._spinner.info('Dry run mode, no update done.')
+                    self._spinner.info('Update needed, dry run mode, no update done.')
                 else:
                     self._spinner.start('Creating LiveDNS snapshot')
                     snapshot = self._snapshot(domain, 'giu')
@@ -234,3 +238,27 @@ class LiveDNS:
                 self._spinner.start(f"Deleting snapshot {snapshot['message']}")
                 self._delete_snapshot(domain, snapshot['message'])
                 self._spinner.succeed(f"Snapshot {snapshot['message']} deleted")
+
+    def sync(self, ip: str, domain: str, records: List[Dict[str, str]]) -> None:
+        """Sync all A records on config file to Gandi
+
+        Args:
+            ip (str): the current ip
+            domain (str): domain name.
+            records (List[Dict[srt, str]]): DNS records to update.
+
+        Returns:
+            None.
+
+        Raises:
+            Exception on case of failure."""
+        if not self._domain_exists(domain):
+            raise RuntimeError(f"requested domain: '{domain}' does not exists")
+
+        _records = filter(lambda r: r['type'] == 'A', records)
+
+        if not _records:
+            raise LiveDNSException("no 'A' record for {domain} in config")
+
+        for r in _records:
+            self._sync(ip, domain, r)
