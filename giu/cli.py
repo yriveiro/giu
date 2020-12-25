@@ -41,7 +41,7 @@ def sync(ctx: click.core.Context, config: Path, dry_run: bool, debug: bool) -> N
             raise RuntimeError('unable to resolve current assigned ip')
 
         spinner.succeed('Dynamic IP fetched.')
-        spinner.info(f'Current dynamic IP: {ip}')
+        spinner.info(f'Current dynamic IP: {ip}.')
 
         if ctx.params['dry_run']:
             spinner.info('Dry run mode on.')
