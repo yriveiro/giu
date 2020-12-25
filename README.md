@@ -22,7 +22,7 @@ configurations.
 
 ```toml
 [api]
-url = 'https://dns.api.gandi.net/api/v5'
+url = 'https://dns.api.gandi.net/v5/livedns'
 key = 'YOUR_KEY'
 
 [dns]
