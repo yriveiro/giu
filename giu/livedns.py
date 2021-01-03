@@ -235,11 +235,11 @@ class LiveDNS:
                     self._spinner.succeed(f"Snapshot {snapshot['message']} created")
 
                     self._spinner.start(
-                        "Updating 'A' record '{record['name']}' on Gandi LiveDNS"
+                        f"Updating 'A' record '{record['name']}' on Gandi LiveDNS"
                     )
                     self._update_record(domain, record, ip)
                     self._spinner.succeed(
-                        "'A' record '{record['name']}' on Gandi LiveDNS updated"
+                        f"'A' record '{record['name']}' on Gandi LiveDNS updated"
                     )
         except Exception as exc:
             raise Exception('sync failed') from exc
