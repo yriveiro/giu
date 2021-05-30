@@ -15,5 +15,8 @@ jobs:
           name: "Install Poetry"
           command: pip3 install poetry
       - run:
+          name: "Enable Poetry"
+          command: poetry shell
+      - run:
           name: "Execute tox"
           command: make tox
