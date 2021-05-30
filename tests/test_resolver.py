@@ -10,17 +10,14 @@ from giu.resolver import Resolver
 from giu.resolver import ResolverError
 
 
-def test_resolve_empty_provider_list(fixture_dir):
-    config = parse(fixture_dir('config.toml'))
-    config['resolver']['providers'] = []
-
+def test_resolve_empty_provider_list():
     with pytest.raises(ResolverError, match=r'^the list of providers .*'):
-        Resolver(config['resolver']['providers'], Halo())
+        Resolver([], Halo())
 
 
 def test_resolve(fixture_dir):
     config = parse(fixture_dir('config.toml'))
-    resolver = Resolver(config['resolver']['providers'], Halo())
+    resolver = Resolver(config.get('resolver').get('providers'), Halo())
 
     assert type(resolver) == Resolver
 
@@ -28,14 +25,14 @@ def test_resolve(fixture_dir):
 def test_resolve_ip(fixture_dir):
     with mock.patch.object(Resolver, 'ip', '127.0.0.1'):
         config = parse(fixture_dir('config.toml'))
-        resolver = Resolver(config['resolver']['providers'], Halo())
+        resolver = Resolver(config.get('resolver').get('providers'), Halo())
 
         assert resolver.ip == '127.0.0.1'
 
 
 def test_resolve_ip_request_mock(fixture_dir):
     config = parse(fixture_dir('config.toml'))
-    resolver = Resolver(config['resolver']['providers'], Halo())
+    resolver = Resolver(config.get('resolver').get('providers'), Halo())
 
     with requests_mock.Mocker(real_http=True) as m:
         m.get('https://ifconfig.me/ip', text='127.0.0.1')
@@ -45,7 +42,7 @@ def test_resolve_ip_request_mock(fixture_dir):
 
 def test_resolve_no_providers(fixture_dir):
     config = parse(fixture_dir('config.toml'))
-    resolver = Resolver(config['resolver']['providers'], Halo())
+    resolver = Resolver(config.get('resolver').get('providers'), Halo())
     resolver._providers = []
 
     with pytest.raises(ResolverError):
@@ -54,7 +51,7 @@ def test_resolve_no_providers(fixture_dir):
 
 def test_resolve_wrong_ip(fixture_dir):
     config = parse(fixture_dir('config.toml'))
-    resolver = Resolver(config['resolver']['providers'], Halo())
+    resolver = Resolver(config.get('resolver').get('providers'), Halo())
 
     with requests_mock.Mocker(real_http=True) as m:
         m.get('https://ifconfig.me/ip', text='not valid ip')
@@ -65,7 +62,7 @@ def test_resolve_wrong_ip(fixture_dir):
 
 def test_resolve_ip_timeout(fixture_dir):
     config = parse(fixture_dir('config.toml'))
-    resolver = Resolver(config['resolver']['providers'], Halo())
+    resolver = Resolver(config.get('resolver').get('providers'), Halo())
 
     with requests_mock.Mocker(real_http=True) as m:
         m.get('https://ifconfig.me/ip', exc=Timeout)

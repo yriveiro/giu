@@ -1,5 +1,5 @@
 import pytest
-from tomlkit.items import Table
+from atoml.items import Table
 
 from giu.config import ConfigError
 from giu.config import parse
@@ -11,7 +11,7 @@ def test_config(fixture_dir):
     assert 'dns' in config
     assert 'api' in config
     assert type(config['api']) == Table
-    assert config['api']['url'] == 'https://api.gandi.net/v5/livedns'
+    assert config.get('api').get('url') == 'https://api.gandi.net/v5/livedns'
 
 
 def test_config_path_not_exists(fixture_dir):
