@@ -6,8 +6,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "Update Ubuntu System"
+          command: sudo apt-get update
+      - run:
           name: "Install Initial Deps"
-          command: apt-get -y install make python3-pip
+          command: sudo apt-get install make python3-pip
       - run:
           name: "Install Poetry"
           command: pip3 install poetry
