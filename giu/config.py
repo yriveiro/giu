@@ -27,6 +27,6 @@ def parse(config_file: Path) -> TOMLDocument:
         raise RuntimeError(f'Configuration file {config_file} not found.')
 
     try:
-        return TOMLFile(path).read()
+        return TOMLFile(str(path)).read()
     except Exception as exc:
         raise ConfigError(f'Failed to parse {config_file}') from exc
