@@ -46,7 +46,7 @@ def sync(ctx: click.core.Context, config: Path, dry_run: bool) -> None:
         if dry_run:
             spinner.info('Dry run mode on.')
 
-        cnf_api = conf.get('cnf_api')
+        cnf_api = conf.get('api')
         dns = LiveDNS(cnf_api.get('url'), cnf_api.get('key'), spinner, **ctx.params)
 
         cnf_dns = conf.get('dns')
