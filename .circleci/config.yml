@@ -17,4 +17,4 @@ jobs:
             set -x
             pip3 install poetry
             poetry install
-            make tox
+            poetry run tox
