@@ -6,17 +6,15 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Update Ubuntu System"
-          command: sudo apt-get update
-      - run:
-          name: "Install Initial Deps"
-          command: sudo apt-get install make python3-pip
+          name: "Update System"
+          command: |
+            set -x
+            sudo apt-get update
+            sudo apt-get install make python3-pip
       - run:
           name: "Install Poetry"
-          command: pip3 install poetry
-      - run:
-          name: "Enable Poetry"
-          command: poetry shell
-      - run:
-          name: "Execute tox"
-          command: make tox
+          command: |
+            set -x
+            pip3 install poetry
+            poetry install
+            make tox
