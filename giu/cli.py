@@ -21,10 +21,11 @@ def giu(ctx: Dict) -> None:
 
 @giu.command()
 @click.pass_context
-@click.option('--config', default='config.toml', help='Path to the config file.')
+@click.option(
+    '--config', default='config.toml', help='Path to the config file.', type=Path
+)
 @click.option('--dry-run', is_flag=True, help='Dry run mode on.')
-@click.option('--debug', is_flag=True, help='Dry run mode on.')
-def sync(ctx: click.core.Context, config: Path, dry_run: bool, debug: bool) -> None:
+def sync(ctx: click.core.Context, config: Path, dry_run: bool) -> None:
     """Sync you dynamic ip to the 'A' record on Gandi LiveDNS"""
 
     try:
