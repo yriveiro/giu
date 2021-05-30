@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. This project adheres to Semantic Versioning.
 
+
+## 0.3.0 - 2021-05-30
+
+### Changed
+
+* Minor improvements in tests.
+* Bump dependencies.
+
 ## 0.2.0 - 2020-12-25
 
 ### Changed
