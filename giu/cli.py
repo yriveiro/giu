@@ -35,8 +35,7 @@ def sync(ctx: click.core.Context, config: Path, dry_run: bool) -> None:
             raise RuntimeError('parse config operation failed')
 
         spinner.start('Feching dynamic IP assigned')
-
-        ip = Resolver(conf['resolver']['providers'], spinner).ip
+        ip = Resolver(conf.get('resolver').get('providers'), spinner).ip
 
         if not ip:
             raise RuntimeError('unable to resolve current assigned ip')
@@ -44,11 +43,14 @@ def sync(ctx: click.core.Context, config: Path, dry_run: bool) -> None:
         spinner.succeed('Dynamic IP fetched.')
         spinner.info(f'Current dynamic IP: {ip}.')
 
-        if ctx.params['dry_run']:
+        if dry_run:
             spinner.info('Dry run mode on.')
 
-        dns = LiveDNS(conf['api']['url'], conf['api']['key'], spinner, **ctx.params)
-        dns.sync(ip, conf['dns']['domain'], conf['dns']['records'])
+        cnf_api = conf.get('cnf_api')
+        dns = LiveDNS(cnf_api.get('url'), cnf_api.get('key'), spinner, **ctx.params)
+
+        cnf_dns = conf.get('dns')
+        dns.sync(ip, cnf_dns.get('domain'), cnf_dns.get('records'))
     except (RuntimeError, LiveDNSException, ResolverError) as exc:
         raise RuntimeError('sync command failed') from exc
     finally:
