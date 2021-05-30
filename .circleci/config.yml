@@ -1,0 +1,16 @@
+version: 2.1
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202104-01
+    steps:
+      - checkout
+      - run:
+          name: "Install Initial Deps"
+          command: apt-get -y install make python3-pip
+      - run:
+          name: "Install Poetry"
+          command: pip3 install poetry
+      - run:
+          name: "Execute tox"
+          command: make tox
