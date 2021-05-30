@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from tomlkit.toml_document import TOMLDocument
-from tomlkit.toml_file import TOMLFile
+from atoml.toml_document import TOMLDocument
+from atoml.toml_file import TOMLFile
 
 
 class ConfigError(Exception):
