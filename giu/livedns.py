@@ -198,9 +198,9 @@ class LiveDNS:
             f"TTL for 'A' record '{record['name']}' on config: {record['ttl']}"
         )
 
-        try:
-            snapshot = None
+        snapshot = None
 
+        try:
             self._spinner.start(
                 f"Getting A record '{record['name']}' info for {domain} from Gandi LiveDNS"
             )
