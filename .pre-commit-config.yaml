@@ -1,24 +1,24 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/mirrors-yapf
-    rev: 'v0.30.0'  # Use the sha / tag you want to point at
+    rev: 'v0.31.0'  # Use the sha / tag you want to point at
     hooks:
       - id: yapf
         args: ['--style=.style.yapf', '--parallel', '--in-place']
 
   - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.4
+    rev: 3.9.2
     hooks:
       - id: flake8
 
   - repo: https://github.com/timothycrosley/isort
-    rev: 5.6.4
+    rev: 5.8.0
     hooks:
       - id: isort
         additional_dependencies: [toml]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0  # Use the ref you want to point at
+    rev: v4.0.1  # Use the ref you want to point at
     hooks:
       - id: trailing-whitespace
       - id: trailing-whitespace
