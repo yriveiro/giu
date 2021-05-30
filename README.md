@@ -3,7 +3,7 @@ Gandi LiveDNS Updater - commnand line tool to keep your dynamic ip up to date.
 
 [![yriveiro](https://circleci.com/gh/yriveiro/giu.svg?style=svg)](https://circleci.com/gh/yriveiro/giu)
 
-[![Downloads](https://static.pepy.tech/personalized-badge/giu?period=week&units=international_system&left_color=black&right_color=orange&left_text=Downloads)](https://pepy.tech/project/giu) [![Downloads](https://static.pepy.tech/personalized-badge/giu?period=month&units=international_system&left_color=black&right_color=orange&left_text=Downloads)](https://pepy.tech/project/giu) [![Downloads](https://static.pepy.tech/personalized-badge/giu?period=total&units=international_system&left_color=black&right_color=orange&left_text=Downloads)](https://pepy.tech/project/giu)
+[![Downloads/Week](https://static.pepy.tech/personalized-badge/giu?period=week&units=international_system&left_color=black&right_color=orange&left_text=Downloads/Week)](https://pepy.tech/project/giu) [![Downloadsi/Month](https://static.pepy.tech/personalized-badge/giu?period=month&units=international_system&left_color=black&right_color=orange&left_text=Downloads/Month)](https://pepy.tech/project/giu) [![Downloads](https://static.pepy.tech/personalized-badge/giu?period=total&units=international_system&left_color=black&right_color=orange&left_text=Downloads)](https://pepy.tech/project/giu)
 
 ## Prequisites
 
