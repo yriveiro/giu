@@ -1,5 +1,5 @@
 # GIU
-Gandi LiveDNS Updater - commnand line tool to keep your dynamic ip up to date.
+Gandi LiveDNS Updater - Command line tool to keep your dynamic ip up to date.
 
 [![yriveiro](https://circleci.com/gh/yriveiro/giu.svg?style=svg)](https://circleci.com/gh/yriveiro/giu)
 
