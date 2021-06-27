@@ -72,4 +72,4 @@ Some improvements that I have ff the top of my head:
 * `put` command to create entries like CNAMES and so on.
 * `delete` command to delete entries
 * `backup` command to do backups
-* ---Docker Image to run giu with docker compose or as a Cronjob on Kubernetes.---
+* ~~Docker Image to run giu with docker compose or as a Cronjob on Kubernetes.~~
