@@ -10,9 +10,12 @@ from giu.resolver import Resolver
 from giu.resolver import ResolverError
 
 
-def test_resolve_empty_provider_list():
+def test_resolve_empty_provider_list(fixture_dir):
+    config = parse(fixture_dir('config.toml'))
+    config.get('resolver')['providers'] = []
+
     with pytest.raises(ResolverError, match=r'^the list of providers .*'):
-        Resolver([], Halo())
+        Resolver(config.get('resolver').get('providers'), Halo())
 
 
 def test_resolve(fixture_dir):
