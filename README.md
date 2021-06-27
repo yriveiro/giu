@@ -58,6 +58,13 @@ $ crontab -e
 * */2 * * * giu sync --conf $HOME/.giu/example.com.toml
 ```
 
+### Docker
+In this example the config is mounted as part of a config folder.
+
+```shell
+docker run -it --rm -v config-folder:/tmp/ yriveiro/giu:latest giu sync --config /tmp/config.toml
+```
+
 ## Improvements
 
 Some improvements that I have ff the top of my head:
@@ -65,4 +72,4 @@ Some improvements that I have ff the top of my head:
 * `put` command to create entries like CNAMES and so on.
 * `delete` command to delete entries
 * `backup` command to do backups
-* Docker Image to run giu with docker compose or as a Cronjob on Kubernetes.
+* --Docker Image to run giu with docker compose or as a Cronjob on Kubernetes.--
