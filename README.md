@@ -33,6 +33,7 @@ key = 'YOUR_KEY'
 domain = 'example.com'
 records = [
     {'type' = 'A', 'name' = '@', 'ttl' = 18000},
+    {'type' = 'A', 'name' = '*', 'ttl' = 1800},
 ]
 
 [resolver]
@@ -59,11 +60,29 @@ $ crontab -e
 ```
 
 ### Docker
-In this example the config is mounted as part of a config folder.
+In this example a config file in the `$PWD` folder is mounted in `/app/conf` and
+the command runs in `dry-run` mode.
 
 ```shell
-docker run -it --rm -v config-folder:/tmp/ yriveiro/giu:latest giu sync --config /tmp/config.toml
+docker run -it --rm -v $PWD:/app/conf yriveiro/giu:dev giu sync --dry-run --config /app/conf/config.toml
+
+✔ Dynamic IP fetched.
+ℹ Current dynamic IP: XXX.XXX.XX.XX.
+ℹ Dry run mode on.
+ℹ TTL for 'A' record '@' on config: 1800
+✔ 'A' record '@' for foo.bar from Gandi LiveDNS
+ℹ IP for 'A' record '@' on Gandi LiveDNS: XXX.XXX.XXX.XXX
+ℹ TTL for 'A' record '@' on Gandi LiveDNS: 18000
+ℹ Update needed, dry run mode, no update done.
+ℹ TTL for 'A' record '*' on config: 1800
+✔ 'A' record '*' for toranja.tech from Gandi LiveDNS
+ℹ IP for 'A' record '*' on Gandi LiveDNS: XXX.XXX.XXX.XXX
+ℹ TTL for 'A' record '*' on Gandi LiveDNS: 1800
+ℹ Update needed, dry run mode, no update done.
 ```
+
+`/app/conf` folder is not configurable once the Docker image has hardening
+applyed and that is the writable folder.
 
 ## Improvements
 
