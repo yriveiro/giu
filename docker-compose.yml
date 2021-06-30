@@ -1,0 +1,10 @@
+---
+version: "3.8"
+services:
+  giu:
+    image: yriveiro/giu:latest
+    container_name: giu
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do giu sync --config /app/conf/config.toml; sleep 1h & wait $${!}; done;'"
+    volumes:
+      - .:/app/conf
+    restart: unless-stopped

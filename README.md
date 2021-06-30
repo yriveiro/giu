@@ -44,6 +44,16 @@ providers = [
 ]
 ```
 
+### Docker Compose
+In this example the config is in the current folder.
+
+```shell
+docker-composer up -d
+```
+
+By default the process will check your configuration every hour and update it if
+the process detects a drift in the desired state.
+
 ### One shot
 In this example the config file was created on `$HOME/.giu/example.com.toml`.
 
