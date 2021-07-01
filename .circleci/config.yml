@@ -4,7 +4,7 @@ workflows:
   build-and-scan:
     jobs:
       - build-code
-      - scan-image
+      - scan
 
 jobs:
   build-code:
@@ -25,7 +25,8 @@ jobs:
             pip3 install poetry
             poetry install
             poetry run tox
-  scan-image:
+
+  scan:
     docker:
       - image: docker:stable-git
     steps:
@@ -37,5 +38,12 @@ jobs:
             apk add --update-cache --upgrade curl
             curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
       - run:
+          name: "Build Docker local Image"
+          command: |
+            docker build --squash -t trivy-ci-test:${CIRCLE_SHA1} .
+      - run:
           name: "Scan the local image with trivy"
-          command: trivy --exit-code 0 --no-progress trivy-ci-test:${CIRCLE_SHA1}
+          command: trivy image --exit-code 0 --no-progress trivy-ci-test:${CIRCLE_SHA1}
+      - run:
+          name: "Scan the project with trivy"
+          command: trivy repo --exit-code 0 --no-progress https://github.com/yriveiro/giu
