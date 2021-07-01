@@ -40,7 +40,7 @@ jobs:
       - run:
           name: "Build Docker local Image"
           command: |
-            docker build --squash -t trivy-ci-test:${CIRCLE_SHA1} .
+            docker build -t trivy-ci-test:${CIRCLE_SHA1} .
       - run:
           name: "Scan the local image with trivy"
           command: trivy image --exit-code 0 --no-progress trivy-ci-test:${CIRCLE_SHA1}
