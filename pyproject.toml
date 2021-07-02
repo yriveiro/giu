@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "giu"
-version = "0.3.1"
+version = "0.3.2"
 description = "Gandi LiveDNS Updater - Command line tool to keep your dynamic ip up to date"
 authors = ["Yago Riveiro <yago.riveiro@gmail.com>"]
 maintainers = ["Yago Riveiro <yago.riveiro@gmail.com>"]
