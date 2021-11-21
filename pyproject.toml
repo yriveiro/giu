@@ -17,6 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: Implementation :: CPython",
     "Environment :: Console",
     "Topic :: Internet :: Name Service (DNS)",
@@ -25,23 +26,23 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-click = "^8.0.1"
-requests = "^2.25.1"
+click = "^8.0.3"
+requests = "^2.26.0"
 halo = "^0.0.31"
-atoml = "^1.0.2"
+atoml = "^1.1.0"
 
 [tool.poetry.dev-dependencies]
-flake8 = "^3.9.2"
+flake8 = "^4.0.1"
 mypy = "^0.910"
-pre-commit = "^2.13.0"
+pre-commit = "^2.15.0"
 pynvim = "^0.4.3"
-pytest = "^6.2.4"
-pytest-cov = "^2.12.1"
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
 pytest-mypy = "^0.8.1"
 pytest-sugar = "^0.9.4"
 requests-mock = "^1.9.3"
-tox = "^3.23.1"
-tox-docker = "^3.0.0"
+tox = "^3.24.4"
+tox-docker = "^3.1.0"
 
 [tool.poetry.scripts]
 giu = 'giu.cli:giu'

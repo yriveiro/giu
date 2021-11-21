@@ -12,7 +12,7 @@ repos:
       - id: flake8
 
   - repo: https://github.com/timothycrosley/isort
-    rev: 5.9.1
+    rev: 5.10.1
     hooks:
       - id: isort
         additional_dependencies: [toml]
